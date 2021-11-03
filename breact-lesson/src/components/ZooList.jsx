@@ -1,12 +1,12 @@
 import ZooAnimal from "./ZooAnimal";
 
-function ZooList({animals}) {
+function ZooList({animals, setShowModal, setModalAnimal, remove}) {
 
     return (
         <div className="zoo-list">
-            {animals.map(animal => <ZooAnimal key={animal.id} animal={animal}></ZooAnimal>)}
+            {animals.map(animal => <ZooAnimal key={animal.id} animal={animal} setShowModal={setShowModal} setModalAnimal={setModalAnimal} remove={remove}></ZooAnimal>)}
         </div>
     )
 }
 
-export default ZooList;
+export default ZooList; 

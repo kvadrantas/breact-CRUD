@@ -3,242 +3,6 @@ body * {
   // box-sizing: border-box;
 }
 
-.top-pane {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-.top-pane > div {
-  width: 50%;
-}
-
-.stats-title {
-  text-align: center;
-  line-height: 20px;
-}
-.stats {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  height: 90px;
-  padding-bottom: 15px;
-}
-
-.stat-val {
-  border-bottom: 1px solid grey;
-  font-style: italic;
-  display: block;
-  width: 130px; 
-  text-transform: ita;
-}
-
-// .stat-val span:first-child {
-//   float: left;
-//   text-align: left; color: blue;
-// }
-
-.stat-val span:last-child {
-  float: right;
-  // width: 100%;
-  text-align: right; color: green;
-}
-
-.stat-block {
-  display: inline-block;
-  margin-right: 30px;
-}
-
-.content {
-  display: inline-block;
-  text-align: center;
-  width: 100vw;
-  height: calc(100vh - 270px);
-  box-sizing: border-box;
-}
-
-.cow,
-.sheep,
-.horse {
-  font-size: 12px;
-  // line-height: 20px;
-  // float: left;
-  display: flex;
-  flex-direction: column;
-  justify-items: left;
-  align-items: flex-start;
-  background-color: rgb(240, 240, 150);
-  margin: 25px;
-  width: 230px;
-  height: 230px;
-
-      span:first-child {
-        margin-top: 30px;
-      }
-
-      span:last-child {
-        width: 100%;
-        margin-top: 30px;
-        margin-bottom: 30px;
-        margin-left: 2px;
-      }
-
-      span {
-        margin-left: 45px;
-
-            label {
-              display: inline-block;
-              width: 70px;
-              text-align: right;
-              padding-right: 2px;
-            }
-
-            input {
-              height: 20px;
-              width: 40px;
-              margin-right: 10px;
-              outline: none;
-              border-color: #9ecaed;
-              box-shadow: 0 0 10px #9ecaed;
-            }
-      }
-
-      span:nth-of-type(3) {
-        display: inline-block;
-        border-bottom: 1px solid rgb(17, 112, 50);
-        margin-bottom: 30px;
-      }
-
-      span:nth-of-type(4),
-      span:nth-of-type(5) {
-        line-height: 23px;
-        margin-left: 6px;
-      }
-
-      span:nth-of-type(5) {
-        text-align: left;
-
-            input {
-              width: 69px;
-              font-size: 8px;
-            }
-
-            input::-webkit-calendar-picker-indicator {
-              width: 10px;
-              margin: 0;
-            } 
-      }
-
-      button {
-        border: 1px solid rgb(119, 113, 113);
-        height: 20px;
-        font-size: 10px;
-        margin-right: 10px;
-        margin: 0;
-      }
-
-      button:hover {
-        outline: none;
-        // border-color: #9ecaed;
-        box-shadow: 0 0 10px #9ecaed;
-      }
-}
-
-
-.cow {
- border-radius: 100%;
- background-color: pink;
-}
-
-.horse {
-  background-color: rgb(196, 137, 83);
-  border-radius: 30px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  float: left;
-  width: 33%;
-  height: 100%;
-  overflow-y: scroll;
-  background-color: darkseagreen;
-  border: 3px dashed brown;
-  border-left: 0;
-}
-
-.navigation {
-  text-align: center;
-  fieldset {
-    width: 120px;
-    height: 190px;
-    float: left;
-    margin-bottom: 30px;
-  }
-}
-
-button {
-  padding: 4px 15px;
-  margin: 10px;
-}
-
-
-
-// RESPONSIVE 
-
-@media (max-width: 900px) {
-  .field {
-    width: 49%;
-    margin-bottom: 20px;
-  }
-}
-
-@media (max-width: 713px) {
-  .top-pane {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .top-pane > div {
-    width: 90%; 
-  }
-
-  .navigation {
-    margin-top: 30px;
-  }
-
-  .navigation fieldset {
-    display: inline-block;
-    float: none;
-  }
-}
-
-@media (max-width: 560px) {
-  .field {
-    text-align: center;
-    width: 100%;
-    border-left: 0;
-    border-right: 0;
-  }
-
-  .navigation {
-    width: 99%;
-    margin-top: 40px;
-  }  
-
-  button {
-    margin: 5px;
-  }
-
-  select {
-    margin-bottom: 10px;
-  }
-
-}
-
-
 
 // ZOO NAUJAS
 
@@ -272,7 +36,13 @@ button {
       box-sizing: border-box;
       min-width: 200px;
       flex-basis: 21%;
-      i {
+      .edit {
+        position: absolute;
+        top: 7px;
+        left: 5%;
+        justify-content: flex-end;
+      }
+      .delete {
         position: absolute;
         top: 7px;
         left: 90%;
@@ -332,6 +102,42 @@ button {
       font: "Hevelica", "Arial", "sans-serif" normal 15px/22px;
       border: 1px solid #eae7e1;
       padding: 20px;
+    }
+  }
+
+  &-form {
+    // width: 250px;
+    border: 1px solid #eae7e1;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  &-modal {
+    position: absolute;
+    top: 0;
+    left: 25vw;
+    padding: 20px 0 20px 20px;
+    background-color: #fbf2ea;
+    border: 1px solid grey;
+    box-shadow: 1px 1px 5px;
+    z-index: 1;
+
+    input {
+      display: block;
+      width: 150px;
+    }
+
+    .form-button {
+      margin-right: 20px;
+    }
+
+    h2 {
+      margin-top: 10px;
     }
   }
 }

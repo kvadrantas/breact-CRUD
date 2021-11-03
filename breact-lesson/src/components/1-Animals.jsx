@@ -64,4 +64,4 @@ function Animals({animal, id, weight, feadingDate, removeAnimal, addWeight, addF
     }
 }
 
-export default Animals;
+export default Animals; 
