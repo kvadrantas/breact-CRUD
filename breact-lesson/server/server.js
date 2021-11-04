@@ -88,7 +88,7 @@ app.put('/animals/:id', (req, res) => {
         req.body.name,
         req.body.type,
         req.body.weight,
-        req.body.born,
+        req.body.born.slice(0, 10),
         req.params.id
     ], (err, results) => {
         if (err) {
@@ -148,12 +148,13 @@ app.get('/animal-filter/:t', (req, res) => {
 
 // SEARCH DATA
 app.get('/animal-search', (req, res) => {
+    const searchText = (`%${req.query.s}%`).toLowerCase();
     const sql = `
         SELECT *
         FROM zverys
-        WHERE name LIKE ?
+        where LOWER(type) like ? OR LOWER(name) like ?
     `;
-    con.query(sql, ['%' + req.query.s + '%'], (err, results) => {
+    con.query(sql, [searchText, searchText], (err, results) => {
         if (err) {
             throw err;
         }

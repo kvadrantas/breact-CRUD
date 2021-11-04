@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ZooCreate from "./components/ZooCreate";
 import ZooList from "./components/ZooList";
 import ZooModal from "./components/ZooModal";
+import ZooNav from "./components/ZooNav";
 
 function App () {
 
@@ -14,7 +15,48 @@ function App () {
         type: '',
         weight: '',
         born: ''
-    })
+    });
+
+    // ----------------- FILTERING -----------------
+    const [types, setTypes] = useState([]);  // filters dropbox options
+    const [filterBy, setFilterBy] = useState('');
+    
+    useEffect(() => {
+        axios.get('http://localhost:3003/animal-types')
+            .then(res => {
+                setTypes(res.data);
+                // console.log(res.data);
+            })
+    }, [lastUpdate])
+
+    useEffect(() => {
+        if (filterBy) {
+            axios.get('http://localhost:3003/animal-filter/'+filterBy)
+            .then(res => {
+                setAnimals(res.data);
+                // console.log(res.data);
+            })
+        }
+    }, [filterBy])
+
+    const reset = () => {
+        setLastUpdate(Date.now());
+    }
+
+    // ----------------- SEARCH -----------------
+    const [searchBy, setSearchBy] = useState('');
+
+    useEffect(() => {
+        if (searchBy) {
+        axios.get('http://localhost:3003/animal-search/?s='+searchBy)
+            .then(res => {
+                setAnimals(res.data);
+                console.log(res.data);
+            })
+        }
+    }, [searchBy])
+    // ------------------------------------------
+
 
     // ALL RECORDS
     useEffect(() => {
@@ -60,14 +102,15 @@ function App () {
         <>
             <div className="zoo">
                 <ZooModal edit={edit} remove={remove} modalAnimal={modalAnimal} showModal={showModal} setShowModal={setShowModal}></ZooModal>
-                <ZooList animals={animals} setShowModal={setShowModal} setModalAnimal={setModalAnimal} remove={remove}></ZooList>
                 <div className="nav">
+                    <ZooNav types={types} search={setSearchBy} filter={setFilterBy} reset={reset}></ZooNav>
                     <ZooCreate create={create}></ZooCreate>
-                    <button className="rp-button">Option 1</button>
-                    <button className="rp-button">Option 1</button>
-                    <button className="rp-button">Option 1</button>
+                    {/* <button className="rp-button">Option 1</button> */}
+                    {/* <button className="rp-button">Option 1</button>
+                    <button className="rp-button">Option 1</button> */}
                     {/* <div className="nav-footer">Apacia</div> */}
                 </div>
+                <ZooList animals={animals} setShowModal={setShowModal} setModalAnimal={setModalAnimal} remove={remove}></ZooList>
             </div>
         </>
         
