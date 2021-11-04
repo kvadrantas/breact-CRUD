@@ -119,14 +119,22 @@ body * {
   }
 
   &-modal {
+    width: 70%;
+    max-width: 550px;
+    min-width: 200px;
     position: absolute;
-    top: 0;
-    left: 25vw;
+    // top: 50%;
+    left: 50%;
+    transform: translate(-50%);
     padding: 20px 0 20px 20px;
     background-color: #fbf2ea;
     border: 1px solid grey;
     box-shadow: 1px 1px 5px;
     z-index: 1;
+
+    h2 {
+      width: 80%;
+    }
 
     input {
       display: block;
@@ -147,11 +155,7 @@ body * {
     label {
       width: 100%;
       margin-top: 5px;
-    }
-
-    fieldset {
-      margin-bottom: 40px;
-    }
+    }    
   }
 }
 
@@ -238,6 +242,20 @@ h2 {
   width: 300px;
 }
 
+fieldset {
+  box-sizing: border-box;
+  width: 90%;
+  margin: 10px 5% 40px 5%;
+  border: 1px solid #512b2b;
+  border-radius: 5px;
+  .form-button {
+    margin-bottom: 15px;
+  }
+  fieldset:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
 
 // RESPONSIVE 
 @media(max-width: 490px) {
@@ -256,9 +274,13 @@ h2 {
     text-align: center; 
 
     fieldset {
-      display: block;
-      margin: 0 35px 40px 35px;
+      display: block;      
+      border: 1px solid #512b2b;
+      border-radius: 5px;
       text-align: left;
+      .form-button {
+        margin-bottom: 15px;
+      }
     }
 
     fieldset > * {
