@@ -4,6 +4,7 @@ import ZooCreate from "./components/ZooCreate";
 import ZooList from "./components/ZooList";
 import ZooModal from "./components/ZooModal";
 import ZooNav from "./components/ZooNav";
+import animalSort from "./js/animalsSort";
 
 function App () {
 
@@ -42,6 +43,15 @@ function App () {
     const reset = () => {
         setLastUpdate(Date.now());
     }
+
+    // ----------------- SORT -----------------
+    const [sortBy, setSortBy] = useState('');
+    useEffect(() => {
+        if (sortBy) {
+            setAnimals(animalSort(animals, sortBy));
+        }
+        //eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [sortBy])
 
     // ----------------- SEARCH -----------------
     const [searchBy, setSearchBy] = useState('');
@@ -103,7 +113,7 @@ function App () {
             <div className="zoo">
                 <ZooModal edit={edit} remove={remove} modalAnimal={modalAnimal} showModal={showModal} setShowModal={setShowModal}></ZooModal>
                 <div className="nav">
-                    <ZooNav types={types} search={setSearchBy} filter={setFilterBy} reset={reset}></ZooNav>
+                    <ZooNav types={types} search={setSearchBy} filter={setFilterBy} sort={setSortBy} reset={reset}></ZooNav>
                     <ZooCreate create={create}></ZooCreate>
                     {/* <button className="rp-button">Option 1</button> */}
                     {/* <button className="rp-button">Option 1</button>
